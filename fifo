@@ -1,0 +1,51 @@
+#include<stdio.h>
+ 
+int main()
+{
+      int rs[10], pf = 0, m, n, s, p, f;
+      printf("\nEnter Total Number of Pages:\t");
+      scanf("%d", &p);
+      printf("\nEnter values of Reference String:\n");
+      for(m = 0; m < p; m++)
+      {
+            printf("Value No. [%d]:\t", m + 1);
+            scanf("%d", &rs[m]);
+      }
+      printf("\nEnter Total Number of Frames:\t");
+      {
+            scanf("%d", &f);
+      }
+      int temp[f];
+      for(m = 0; m < f; m++)
+      {
+            temp[m] = -1;
+      }
+      for(m = 0; m < p; m++)
+      {
+            s = 0;
+            for(n = 0; n < f; n++)
+            {
+                  if(rs[m] == temp[n])
+                  {
+                        s++;
+                        pf--;
+                  }
+            }     
+            pf++;
+            if((pf <= f) && (s == 0))
+            {
+                  temp[m] = rs[m];
+            }   
+            else if(s == 0)
+            {
+                  temp[(pf - 1) % f] = rs[m];
+            }
+            printf("\n");
+            for(n = 0; n < f; n++)
+            {     
+                  printf("%d\t", temp[n]);
+            }
+      } 
+      printf("\nTotal Page Faults:\t%d\n", pf);
+      return 0;
+}
